@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:loginsignup/core/appRoutes.dart';
 
 class OtpController extends GetxController {
   var isLoading = false.obs;
@@ -20,11 +21,12 @@ class OtpController extends GetxController {
 
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
+        print(response.body);
 
         if (data["status"] == true) {
           Get.snackbar("Success", data["message"] ?? "OTP Verified ✅");
-          // OTP verify হলে Navigate করো
-          // Get.offAll(HomeScreen());
+
+          Get.toNamed(AppRoutes.LoginA);
         } else {
           Get.snackbar("Error", data["message"] ?? "Invalid OTP ❌");
         }

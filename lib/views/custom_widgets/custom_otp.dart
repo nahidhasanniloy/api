@@ -25,8 +25,8 @@ class CustomPinCode extends StatelessWidget {
         pinTheme: PinTheme(
           shape: PinCodeFieldShape.box,
           borderRadius: BorderRadius.circular(16),
-          fieldHeight: 65,
-          fieldWidth: size.width * 0.15,
+          fieldHeight: 55,
+          fieldWidth: size.width * 0.10,
           inactiveColor: AppColors.primary,
           activeColor: AppColors.white_50, // active color
           activeFillColor: AppColors.white_50,

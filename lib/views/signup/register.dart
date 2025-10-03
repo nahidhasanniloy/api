@@ -71,8 +71,6 @@ class Register extends StatelessWidget {
                           last_name: lastnameController.text.trim(),
                           password_confirmation: confirmPasswordController.text,
                         );
-
-
                       },
                 child: Container(
                   alignment: Alignment.center,

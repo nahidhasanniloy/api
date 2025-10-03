@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Flutter Demo ',
 
-
+      // device preview for responsive
       builder: DevicePreview.appBuilder,
       useInheritedMediaQuery: true,
       locale: DevicePreview.locale(context),
@@ -28,6 +28,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
+
+
       debugShowCheckedModeBanner: false,
       defaultTransition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 200),

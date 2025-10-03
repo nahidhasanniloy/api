@@ -8,9 +8,9 @@ class RegisterController extends GetxController {
 
   Future<void> registerUser({
     required String first_name,
+    required String last_name,
     required String email,
     required String password,
-    required String last_name,
     required String password_confirmation,
   }) async {
     isLoading.value = true;
@@ -40,27 +40,20 @@ class RegisterController extends GetxController {
         print("Failed to parse JSON: $e");
       }
 
-      // Check for success: statusCode 2xx and status true/1/'true'
-      bool successStatus = false;
-      if (data.containsKey("status")) {
-        var s = data["status"];
-        successStatus = s == true || s == "true" || s == 1;
-      }
 
-      if ((response.statusCode >= 200 && response.statusCode < 300) && successStatus) {
-        // Navigate to OTP screen
-        Get.to(() => OtpScreen(email: email));
+      if ((response.statusCode >= 201 && response.statusCode < 300)) {
 
-        // Show success snackbar
         Get.snackbar(
           "Success",
           data["message"] ?? "Registration successful",
-          snackPosition: SnackPosition.BOTTOM,
+
         );
+
+        Get.to(() => OtpScreen(email: email));
       } else {
         // Show error snackbar
         Get.snackbar(
-          "Error",
+          "error",
           data["message"] ?? "Registration failed",
           snackPosition: SnackPosition.BOTTOM,
         );

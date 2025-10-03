@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import '../homePage/home_page.dart';
 
 class LoginController extends GetxController {
   var isLoading = false.obs;
@@ -25,12 +26,10 @@ class LoginController extends GetxController {
       final data = jsonDecode(response.body);
 
       if (response.statusCode == 200 && data["status"] == true) {
-        // ✅ Login success হলে snackbar দেখাবে
+
         Get.snackbar("Success", "Login successful!");
 
-        // 👉 এখানে তুমি চাইলে অন্য কোনো পেজে পাঠাতে পারো
-        // যেমনঃ Dashboard বা HomePage
-        // Get.offAll(() => HomePage());
+         Get.offAll(() => HomePage());
 
       } else {
         // ❌ Login fail হলে error দেখাবে
