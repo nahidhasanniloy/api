@@ -7,7 +7,7 @@ void main() {
   runApp(
     DevicePreview(
       enabled: true,
-      builder: (context) => const MyApp(), // আপনার মূল অ্যাপ
+      builder: (context) => const MyApp(),
     ),
   );
 }
@@ -18,9 +18,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flutter Demo ',
 
-      // Device Preview এর জন্য integration
+
       builder: DevicePreview.appBuilder,
       useInheritedMediaQuery: true,
       locale: DevicePreview.locale(context),
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       defaultTransition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 200),
-      initialRoute: AppRoutes.LoginA,
+      initialRoute: AppRoutes.register,
       getPages: AppRoutes.routes,
     );
   }

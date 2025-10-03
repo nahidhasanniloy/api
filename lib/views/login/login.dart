@@ -1,49 +1,51 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:loginsignup/utils/app_colors.dart';
+import '../../utils/app_colors.dart';
+import '../signup/register.dart';
+import 'login_controller.dart';
 
-import 'controller/register_controller.dart';
-
-class Login extends StatelessWidget {
-  Login({super.key});
+class LoginPage extends StatelessWidget {
+  LoginPage({super.key});
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
   // Controller initialize
-  final RegisterController controller = Get.put(RegisterController());
+  final LoginController controller = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        clipBehavior: Clip.antiAlias,
-        title: Text('Sign Up'),
+        title: const Text("Login"),
         centerTitle: true,
-        actions: [Icon(Icons.more_vert)],
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextFormField(
               controller: emailController,
-              decoration: InputDecoration(hintText: 'Email'),
+              decoration: const InputDecoration(hintText: 'Email'),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextFormField(
               controller: passwordController,
-              decoration: InputDecoration(hintText: 'Password'),
+              decoration: const InputDecoration(hintText: 'Password'),
               obscureText: true,
             ),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
+
+            // Login Button
             Obx(() {
               return GestureDetector(
                 onTap: controller.isLoading.value
                     ? null
                     : () {
-                  controller.registerUser(
+                  controller.loginUser(
                     email: emailController.text.trim(),
                     password: passwordController.text.trim(),
                   );
@@ -51,28 +53,38 @@ class Login extends StatelessWidget {
                 child: Container(
                   alignment: Alignment.center,
                   width: double.infinity,
-                  height: 40,
+                  height: 50,
                   decoration: BoxDecoration(
                     color: AppColors.primary,
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    borderRadius: const BorderRadius.all(Radius.circular(10)),
                   ),
                   child: controller.isLoading.value
-                      ? CircularProgressIndicator(color: Colors.white)
-                      : Text(
-                    'Register',
+                      ? const CircularProgressIndicator(color: Colors.white)
+                      : const Text(
+                    'Login',
                     style: TextStyle(
-                      color: AppColors.white,
+                      color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
               );
             }),
+
+            const SizedBox(height: 20),
+
+            // Register button
+            GestureDetector(
+              onTap: () {
+                Get.to(() => Register());
+              },
+              child: const Text(
+                "Don't have an account? Register",
+                style: TextStyle(color: Color(0xff000000)),
+              ),
+            ),
           ],
         ),
-
-
-
       ),
     );
   }
